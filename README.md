@@ -22,11 +22,11 @@ import SquidLibs
 
 ## Documentation
 
-Full documentation is available at [link to documentation or GitHub Wiki].
+Full documentation is available on the [wiki](https://github.com/realSquidCoder/SquidLibs/wiki).
 
 ## License
 
-SquidLibs is primarily licensed under the GNU General Public License v3 (GPLv3). See the LICENSE file for more details.
+SquidLibs is primarily licensed under the GNU General Public License v3 (GPLv3). See the [LICENSE file](https://github.com/realSquidCoder/SquidLibs/blob/main/LICENSE) for more details.
 
 ## Contributions and Use Cases
 
