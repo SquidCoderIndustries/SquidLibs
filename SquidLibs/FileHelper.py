@@ -1,16 +1,14 @@
-import os
-import sys
+import os, sys
 from tkinter import filedialog
-from SquidLibs import FileMan,config
 
 class FileHelper:
     def __init__(self):
         """Store file paths in paths to access anywhere else"""
         self.paths = {
-            'base_path' : os.path.dirname(sys.argv[0]),
+            'base_path' : os.path.dirname(os.path.dirname(sys.argv[0])),
             'internals_path' : os.path.dirname(os.path.abspath(__file__)),
         }
-
+        print(self.paths)
     def saveToFiletype(self, dataList, type, typeName):
         """Save each item from dataList to a new line in a file with a custom type."""
         file_path = filedialog.asksaveasfilename(defaultextension=f".{type}", filetypes=[(typeName, f"*.{type}")])
@@ -31,5 +29,3 @@ class FileHelper:
         """Open `path` for writing (by default), creating any parent directories as needed."""
         os.makedirs(os.path.dirname(path), exist_ok=True)
         return open(path, mode, newline=newline,encoding=encoding)
-
-FileMan = FileHelper()

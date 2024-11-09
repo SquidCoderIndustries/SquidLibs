@@ -1,6 +1,9 @@
 import sys, traceback, warnings
-from . import DEBUG
+import tkinter as tk
+from SquidLibs import DEBUG
+from tkinter import messagebox
 
+# from SquidLibs.windowMethods import show_error_popup,show_warning_popup
 class ErrorHandler:
     # Custom Exceptions
     class GenericError(Exception):
@@ -36,6 +39,30 @@ class ErrorHandler:
         def __init__(self, setting_name, message):
             super().__init__(message)
             self.setting_name = setting_name
+
+
+    # Display popups for errors and warnings
+    @staticmethod
+    def show_error_popup(error_msg, title="Error"):
+        root = tk.Tk()
+        root.withdraw()  # Hide the main window
+        messagebox.showerror(title, error_msg)
+        root.destroy()
+
+    @staticmethod
+    def show_warning_popup(warning_msg, title="Warning"):
+        root = tk.Tk()
+        root.withdraw()  # Hide the main window
+        messagebox.showwarning(title, warning_msg)
+        root.destroy()
+
+    @staticmethod
+    def show_cancelable_warning_popup(warning_msg, title="Warning"):
+        root = tk.Tk()
+        root.withdraw()  # Hide the main window
+        accepted = messagebox.askokcancel(title, warning_msg)
+        root.destroy()
+        return accepted
 
     # Global exception handler
     @staticmethod

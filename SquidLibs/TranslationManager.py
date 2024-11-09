@@ -1,6 +1,5 @@
 import os
-from . import TransMan,FileMan
-from . import ErrorHandler
+from SquidLibs import ErrorHandler
 
 class TranslationManager:
     def __init__(self, language_code):
@@ -12,9 +11,12 @@ class TranslationManager:
         Load all translation files from the directory for the specified language.
         It loads any file that ends with `_translate.txt`.
         """
+        from . import FileMan
         # Construct the directory path for the current language dynamically
         base_dir = FileMan.paths['base_path']
-        if FileMan.paths['lang_path'] is None:
+        try:
+            translation_dir = FileMan.paths['lang_path']
+        except KeyError:
             FileMan.paths['lang_path'] = f"{base_dir}/lang/{self.language_code}"
         translation_dir = FileMan.paths['lang_path']
 
@@ -84,8 +86,6 @@ class TranslationManager:
         return value
 
 def setup_translation_manager(language_code="Default"):
-    global TransMan
     TransMan = TranslationManager(language_code)
     TransMan.load_all_translation_files()
     return TransMan
-TransMan = setup_translation_manager()

@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 from PIL import Image, ImageTk
-from .TranslationManager import TransMan as tm
+from SquidLibs import TransMan as tm
 
 # -------------------- Window and Layout Creation --------------------
 def create_window(title, sizeX, sizeY):
@@ -58,26 +58,6 @@ def create_tab(notebook, title, icon=None):
     tab = ttk.Frame(notebook)
     notebook.add(tab, text=tm.translate(title), image=icon, compound='left' if icon else None)
     return tab
-
-# Display popups for errors and warnings
-def show_error_popup(error_msg, title="Error"):
-    root = tk.Tk()
-    root.withdraw()  # Hide the main window
-    messagebox.showerror(title, error_msg)
-    root.destroy()
-
-def show_warning_popup(warning_msg, title="Warning"):
-    root = tk.Tk()
-    root.withdraw()  # Hide the main window
-    messagebox.showwarning(title, warning_msg)
-    root.destroy()
-
-def show_cancelable_warning_popup(warning_msg, title="Warning"):
-    root = tk.Tk()
-    root.withdraw()  # Hide the main window
-    accepted = messagebox.askokcancel(title, warning_msg)
-    root.destroy()
-    return accepted
 
 # -------------------- Widget Creation --------------------
 
