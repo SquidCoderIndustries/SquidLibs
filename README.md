@@ -1,11 +1,6 @@
 # SquidLibs
 
-SquidLibs is a Python library developed by Squid Coder, offering [describe key features briefly, e.g., utilities for data manipulation, algorithms, etc.]. Designed to help developers with [main uses or benefits of SquidLibs], SquidLibs is lightweight, efficient, and easy to integrate into a wide range of Python projects.
-
-## Features
-- Feature 1: [Brief description]
-- Feature 2: [Brief description]
-- Feature 3: [Brief description]
+SquidLibs is a Python library developed by Squid Coder. More details to come in the future.
 
 ## Installation
 
