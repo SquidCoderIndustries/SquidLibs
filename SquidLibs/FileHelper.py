@@ -5,7 +5,7 @@ class FileHelper:
     def __init__(self):
         """Store file paths in paths to access anywhere else"""
         self.paths = {
-            'base_path' : os.path.dirname(os.path.dirname(sys.argv[0])),
+            'base_path' : os.path.dirname(sys.argv[0]),
             'internals_path' : os.path.dirname(os.path.abspath(__file__)),
             'lang_path' : ''
         }
