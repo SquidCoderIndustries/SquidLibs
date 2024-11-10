@@ -1,6 +1,6 @@
 # SquidLibs
 
-SquidLibs is a Python library developed by Squid Coder. More details to come in the future.
+SquidLibs is a Python library for translation, tkinter Windows, and basic file handling developed by Squid Coder.
 
 ## Installation
 
