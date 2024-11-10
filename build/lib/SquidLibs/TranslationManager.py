@@ -1,9 +1,12 @@
 import os
-from SquidLibs import ErrorHandler
+from SquidLibs.ErrorHandler import *
+
 
 class TranslationManager:
     def __init__(self, language_code):
+        from . import FileMan
         self.language_code = language_code
+        self.translation_dir = f"{FileMan.paths['internals_path']}/lang/{self.language_code}"
         self.translations = {}
 
     def load_all_translation_files(self):
@@ -11,22 +14,16 @@ class TranslationManager:
         Load all translation files from the directory for the specified language.
         It loads any file that ends with `_translate.txt`.
         """
-        from . import FileMan
         # Construct the directory path for the current language dynamically
-        base_dir = FileMan.paths['base_path']
-        try:
-            translation_dir = FileMan.paths['lang_path']
-        except KeyError:
-            FileMan.paths['lang_path'] = f"{base_dir}/lang/{self.language_code}"
-        translation_dir = FileMan.paths['lang_path']
 
-        if not os.path.isdir(translation_dir):
-            raise FileNotFoundError(f"Language directory {translation_dir} not found.")
-        
+        if not os.path.isdir(self.translation_dir):
+            raise FileNotFoundError(f"Language directory {self.translation_dir} not found.")
+        else:
+            print(self.translation_dir)
         # Loop through all files in the language directory
-        for file_name in os.listdir(translation_dir):
+        for file_name in os.listdir(self.translation_dir):
             if file_name.endswith("_translate.txt"):
-                self._load_translation_file(os.path.join(translation_dir, file_name))
+                self._load_translation_file(os.path.join(self.translation_dir, file_name))
 
     def _load_translation_file(self, file_path):
         """
@@ -48,7 +45,7 @@ class TranslationManager:
                 if found_lang != self.language_code:
                     raise ErrorHandler.LanguageLabelMismatchError(self.language_code, found_lang)
             else:
-                raise ErrorHandler.LanguageLabelGenericError(f"Missing or invalid language header in {file_path}. Found {first_line}.")
+                raise ErrorHandler.GenericError(f"Missing or invalid language header in {file_path}. Found {first_line}.")
 
             # Load the rest of the translation key-value pairs
             for line in file:
